@@ -107,6 +107,6 @@ public class RefactorLabTest
         var app = new RefactorLab(items);
         app.UpdateQuality();
         Assert.That(items[0].Quality, Is.EqualTo(50));
-        Assert.That(items[0].Name, Is.EqualTo("fixme"));
+        Assert.That(items[0].Name, Is.EqualTo("Eski Kaşar Peyniri"));
     }
 }
