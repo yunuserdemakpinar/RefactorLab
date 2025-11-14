@@ -19,45 +19,25 @@ public class RefactorLab
 
             if (itemName != ItemName.AgedKasharCheese && itemName != ItemName.BulutusuzlukOzlemiConcertTicket)
             {
-                if (Items[i].Quality > Constants.MinQuality)
-                {
-                    if (itemName != ItemName.VegetableOrFruit)
-                    {
-                        Items[i].Quality = Items[i].Quality - 1;
-                    }
-                }
+                if (itemName != ItemName.VegetableOrFruit)
+                    ItemController.DecreaseQuality(Items[i]);
             }
             else
             {
-                if (Items[i].Quality < Constants.MaxQuality)
+                ItemController.IncreaseQuality(Items[i]);
+
+                if (itemName == ItemName.BulutusuzlukOzlemiConcertTicket)
                 {
-                    Items[i].Quality = Items[i].Quality + 1;
+                    if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold1)
+                        ItemController.IncreaseQuality(Items[i]);
 
-                    if (itemName == ItemName.BulutusuzlukOzlemiConcertTicket)
-                    {
-                        if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold1)
-                        {
-                            if (Items[i].Quality < Constants.MaxQuality)
-                            {
-                                Items[i].Quality = Items[i].Quality + 1;
-                            }
-                        }
-
-                        if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold2)
-                        {
-                            if (Items[i].Quality < Constants.MaxQuality)
-                            {
-                                Items[i].Quality = Items[i].Quality + 1;
-                            }
-                        }
-                    }
+                    if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold2)
+                        ItemController.IncreaseQuality(Items[i]);
                 }
             }
 
             if (itemName != ItemName.VegetableOrFruit)
-            {
-                Items[i].SellIn = Items[i].SellIn - 1;
-            }
+                ItemController.DecreaseSellIn(Items[i]);
 
             if (Items[i].SellIn < Constants.SellInThreshold)
             {
@@ -65,26 +45,14 @@ public class RefactorLab
                 {
                     if (itemName != ItemName.BulutusuzlukOzlemiConcertTicket)
                     {
-                        if (Items[i].Quality > Constants.MinQuality)
-                        {
-                            if (itemName != ItemName.VegetableOrFruit)
-                            {
-                                Items[i].Quality = Items[i].Quality - 1;
-                            }
-                        }
+                        if (itemName != ItemName.VegetableOrFruit)
+                            ItemController.DecreaseQuality(Items[i]);
                     }
                     else
-                    {
-                        Items[i].Quality = Items[i].Quality - Items[i].Quality;
-                    }
+                        ItemController.ResetQuality(Items[i]);
                 }
                 else
-                {
-                    if (Items[i].Quality < Constants.MaxQuality)
-                    {
-                        Items[i].Quality = Items[i].Quality + 1;
-                    }
-                }
+                    ItemController.IncreaseQuality(Items[i]);
             }
         }
     }
