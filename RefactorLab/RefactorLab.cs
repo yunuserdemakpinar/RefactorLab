@@ -17,7 +17,7 @@ public class RefactorLab
         {
             if (Items[i].Name != "Eski Kaşar Peyniri" && Items[i].Name != "Bulutsuzluk özlemi konser bileti")
             {
-                if (Items[i].Quality > 0)
+                if (Items[i].Quality > Constants.MinQuality)
                 {
                     if (Items[i].Name != "Sebze meyve")
                     {
@@ -27,23 +27,23 @@ public class RefactorLab
             }
             else
             {
-                if (Items[i].Quality < 50)
+                if (Items[i].Quality < Constants.MaxQuality)
                 {
                     Items[i].Quality = Items[i].Quality + 1;
 
                     if (Items[i].Name == "Bulutsuzluk özlemi konser bileti")
                     {
-                        if (Items[i].SellIn < 11)
+                        if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold1)
                         {
-                            if (Items[i].Quality < 50)
+                            if (Items[i].Quality < Constants.MaxQuality)
                             {
                                 Items[i].Quality = Items[i].Quality + 1;
                             }
                         }
 
-                        if (Items[i].SellIn < 6)
+                        if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold2)
                         {
-                            if (Items[i].Quality < 50)
+                            if (Items[i].Quality < Constants.MaxQuality)
                             {
                                 Items[i].Quality = Items[i].Quality + 1;
                             }
@@ -57,13 +57,13 @@ public class RefactorLab
                 Items[i].SellIn = Items[i].SellIn - 1;
             }
 
-            if (Items[i].SellIn < 0)
+            if (Items[i].SellIn < Constants.SellInThreshold)
             {
                 if (Items[i].Name != "Eski Kaşar Peyniri")
                 {
                     if (Items[i].Name != "Bulutsuzluk özlemi konser bileti")
                     {
-                        if (Items[i].Quality > 0)
+                        if (Items[i].Quality > Constants.MinQuality)
                         {
                             if (Items[i].Name != "Sebze meyve")
                             {
@@ -78,7 +78,7 @@ public class RefactorLab
                 }
                 else
                 {
-                    if (Items[i].Quality < 50)
+                    if (Items[i].Quality < Constants.MaxQuality)
                     {
                         Items[i].Quality = Items[i].Quality + 1;
                     }
