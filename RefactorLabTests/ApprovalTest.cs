@@ -1,4 +1,4 @@
-using RefactorLabKata;
+using RefactorLabPackage;
 
 using System;
 using System.IO;

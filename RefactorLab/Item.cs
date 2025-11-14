@@ -1,4 +1,4 @@
-﻿namespace RefactorLabKata;
+﻿namespace RefactorLabPackage;
 
 public class Item
 {

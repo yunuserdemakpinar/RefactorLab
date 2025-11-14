@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RefactorLabKata;
+namespace RefactorLabPackage;
 
 public class RefactorLab
 {

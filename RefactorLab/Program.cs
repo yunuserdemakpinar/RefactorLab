@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RefactorLabKata;
+namespace RefactorLabPackage;
 
 public class Program
 {
@@ -33,7 +33,7 @@ public class Program
                 Name = "Bulutsuzluk özlemi konser bileti",
                 SellIn = 5,
                 Quality = 49
-            }, 
+            },
             new Item {Name = "Çatapat", SellIn = 3, Quality = 6}
         };
 

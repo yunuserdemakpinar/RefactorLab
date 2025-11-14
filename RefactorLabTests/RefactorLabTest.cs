@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using RefactorLabKata;
+using RefactorLabPackage;
 using NUnit.Framework;
 
 namespace RefactorLabTests;
