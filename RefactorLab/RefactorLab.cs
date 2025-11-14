@@ -15,7 +15,7 @@ public class RefactorLab
     {
         for (var i = 0; i < Items.Count; i++)
         {
-            var itemStrategy = ItemStrategyFactory.Create(ItemNameConverter.StringToItemName(Items[i].Name));
+            var itemStrategy = ItemStrategyFactory.Create(Items[i].Name);
             itemStrategy.UpdateItem(Items[i]);
         }
     }
