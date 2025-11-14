@@ -15,11 +15,13 @@ public class RefactorLab
     {
         for (var i = 0; i < Items.Count; i++)
         {
-            if (Items[i].Name != "Eski Kaşar Peyniri" && Items[i].Name != "Bulutsuzluk özlemi konser bileti")
+            var itemName = ItemNameConverter.StringToItemName(Items[i].Name);
+
+            if (itemName != ItemName.AgedKasharCheese && itemName != ItemName.BulutusuzlukOzlemiConcertTicket)
             {
                 if (Items[i].Quality > Constants.MinQuality)
                 {
-                    if (Items[i].Name != "Sebze meyve")
+                    if (itemName != ItemName.VegetableOrFruit)
                     {
                         Items[i].Quality = Items[i].Quality - 1;
                     }
@@ -31,7 +33,7 @@ public class RefactorLab
                 {
                     Items[i].Quality = Items[i].Quality + 1;
 
-                    if (Items[i].Name == "Bulutsuzluk özlemi konser bileti")
+                    if (itemName == ItemName.BulutusuzlukOzlemiConcertTicket)
                     {
                         if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold1)
                         {
@@ -52,20 +54,20 @@ public class RefactorLab
                 }
             }
 
-            if (Items[i].Name != "Sebze meyve")
+            if (itemName != ItemName.VegetableOrFruit)
             {
                 Items[i].SellIn = Items[i].SellIn - 1;
             }
 
             if (Items[i].SellIn < Constants.SellInThreshold)
             {
-                if (Items[i].Name != "Eski Kaşar Peyniri")
+                if (itemName != ItemName.AgedKasharCheese)
                 {
-                    if (Items[i].Name != "Bulutsuzluk özlemi konser bileti")
+                    if (itemName != ItemName.BulutusuzlukOzlemiConcertTicket)
                     {
                         if (Items[i].Quality > Constants.MinQuality)
                         {
-                            if (Items[i].Name != "Sebze meyve")
+                            if (itemName != ItemName.VegetableOrFruit)
                             {
                                 Items[i].Quality = Items[i].Quality - 1;
                             }
