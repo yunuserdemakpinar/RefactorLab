@@ -17,42 +17,43 @@ public class RefactorLab
         {
             var itemName = ItemNameConverter.StringToItemName(Items[i].Name);
 
-            if (itemName != ItemName.AgedKasharCheese && itemName != ItemName.BulutusuzlukOzlemiConcertTicket)
-            {
-                if (itemName != ItemName.VegetableOrFruit)
-                    ItemController.DecreaseQuality(Items[i]);
-            }
-            else
-            {
-                ItemController.IncreaseQuality(Items[i]);
+            if (itemName == ItemName.VegetableOrFruit)
+                continue;
 
-                if (itemName == ItemName.BulutusuzlukOzlemiConcertTicket)
-                {
-                    if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold1)
-                        ItemController.IncreaseQuality(Items[i]);
-
+            switch (itemName)
+            {
+                case ItemName.BulutusuzlukOzlemiConcertTicket:
                     if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold2)
+                        ItemController.IncreaseQuality(Items[i], 3);
+                    else if (Items[i].SellIn < Constants.ConcertTicketSellInThreshold1)
+                        ItemController.IncreaseQuality(Items[i], 2);
+                    else
                         ItemController.IncreaseQuality(Items[i]);
-                }
+                    break;
+                case ItemName.AgedKasharCheese:
+                    ItemController.IncreaseQuality(Items[i]);
+                    break;
+                default:
+                    ItemController.DecreaseQuality(Items[i]);
+                    break;
             }
 
-            if (itemName != ItemName.VegetableOrFruit)
-                ItemController.DecreaseSellIn(Items[i]);
+            ItemController.DecreaseSellIn(Items[i]);
 
             if (Items[i].SellIn < Constants.SellInThreshold)
             {
-                if (itemName != ItemName.AgedKasharCheese)
+                switch (itemName)
                 {
-                    if (itemName != ItemName.BulutusuzlukOzlemiConcertTicket)
-                    {
-                        if (itemName != ItemName.VegetableOrFruit)
-                            ItemController.DecreaseQuality(Items[i]);
-                    }
-                    else
+                    case ItemName.BulutusuzlukOzlemiConcertTicket:
                         ItemController.ResetQuality(Items[i]);
+                        break;
+                    case ItemName.AgedKasharCheese:
+                        ItemController.IncreaseQuality(Items[i]);
+                        break;
+                    default:
+                        ItemController.DecreaseQuality(Items[i]);
+                        break;
                 }
-                else
-                    ItemController.IncreaseQuality(Items[i]);
             }
         }
     }
